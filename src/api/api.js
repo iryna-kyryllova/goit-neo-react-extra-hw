@@ -4,6 +4,15 @@ const instance = axios.create({
   baseURL: 'https://connections-api.goit.global'
 })
 
+// Auth
+
+export const registerApi = async (newUser) => {
+  const { data } = await instance.post('/users/signup', newUser)
+  return data
+}
+
+// Contacts
+
 export const fetchContactsApi = async () => {
   const { data } = await instance.get('/contacts')
   return data

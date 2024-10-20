@@ -10,8 +10,11 @@ export default defineConfig({
   resolve: {
     alias: {
       components: '/src/components',
+      pages: '/src/pages',
+      guards: '/src/guards',
       api: '/src/api',
-      styles: '/src/assets/styles'
+      styles: '/src/assets/styles',
+      img: '/src/assets/img'
     }
   }
 })

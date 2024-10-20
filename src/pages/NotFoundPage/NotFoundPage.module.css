@@ -1,0 +1,22 @@
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 13px 25px;
+  border: none;
+  background-color: transparent;
+  line-height: 1;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.imgHolder {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.img {
+  width: 100%;
+  max-width: 700px;
+}

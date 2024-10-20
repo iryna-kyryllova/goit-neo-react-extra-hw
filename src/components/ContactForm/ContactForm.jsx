@@ -4,7 +4,6 @@ import { Formik, Field, Form, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import toast from 'react-hot-toast'
 import { addContact } from '../../redux/contacts/operations'
-import styles from './ContactForm.module.css'
 
 const ContactForm = () => {
   const nameId = useId()
@@ -31,20 +30,18 @@ const ContactForm = () => {
       }}
       onSubmit={handleSubmit}
       validationSchema={ContactSchema}>
-      <Form className={styles.form}>
-        <div className={styles.field}>
+      <Form>
+        <div>
           <label htmlFor={nameId}>Name</label>
           <Field type='text' id={nameId} name='name' />
           <ErrorMessage name='name' component='span' />
         </div>
-        <div className={styles.field}>
+        <div>
           <label htmlFor={numberId}>Number</label>
           <Field type='tel' id={numberId} name='number' />
           <ErrorMessage name='number' component='span' />
         </div>
-        <button type='submit' className={styles.btn}>
-          Add contact
-        </button>
+        <button type='submit'>Add contact</button>
       </Form>
     </Formik>
   )

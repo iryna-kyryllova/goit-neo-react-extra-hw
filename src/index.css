@@ -102,6 +102,33 @@ button {
   }
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+  margin-bottom: 40px;
+  padding: 25px;
+  border: 1px solid var(--black);
+  border-radius: 4px;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+
+    span {
+      margin-top: 3px;
+      font-size: 14px;
+      color: var(--red);
+    }
+  }
+
+  [type='submit'] {
+    margin-top: 15px;
+    padding: 10px 15px;
+  }
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

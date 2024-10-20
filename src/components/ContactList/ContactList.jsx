@@ -4,8 +4,8 @@ import {
   selectContactsLoading,
   selectContactsError,
   selectFilteredContacts
-} from '../../redux/contactsSlice'
-import { deleteContact } from '../../redux/contactsOps'
+} from '../../redux/contacts/selectors'
+import { deleteContact } from '../../redux/contacts/operations'
 import Contact from '../Contact/Contact'
 import Loader from '../Loader/Loader'
 import styles from './ContactList.module.css'

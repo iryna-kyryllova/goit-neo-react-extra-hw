@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: 'https://671128fd4eca2acdb5f3e624.mockapi.io'
+  baseURL: 'https://connections-api.goit.global'
 })
 
 export const fetchContactsApi = async () => {

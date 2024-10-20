@@ -31,6 +31,12 @@ export const logoutApi = async () => {
   return removeToken()
 }
 
+export const refreshUserApi = async (token) => {
+  setToken(token)
+  const { data } = await instance.get('/users/current')
+  return data
+}
+
 // Contacts
 
 export const fetchContactsApi = async () => {

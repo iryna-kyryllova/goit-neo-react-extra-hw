@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { registerApi, loginApi, logoutApi } from 'api/api'
+import { registerApi, loginApi, logoutApi, refreshUserApi } from 'api/api'
 
 export const register = createAsyncThunk('auth/register', async (data, thunkAPI) => {
   try {
@@ -27,12 +27,21 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 })
 
-export const refreshUser = createAsyncThunk('auth/refresh', async (data, thunkAPI) => {
-  try {
-    console.log('Refresh data:', data)
-    // const response = await fetchContactsApi()
-    // return response
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message)
+export const refreshUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.token
+      const response = await refreshUserApi(token)
+      return response
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message)
+    }
+  },
+  {
+    condition: (_, { getState }) => {
+      const token = getState().auth.token
+      return token !== null
+    }
   }
-})
+)

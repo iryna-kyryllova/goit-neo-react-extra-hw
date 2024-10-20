@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
+import styles from './AuthNav.module.css'
 
 const AuthNav = () => {
   return (
-    <ul>
+    <ul className={styles.navigation}>
       <li>
         <Link to='/login'>Login</Link>
       </li>

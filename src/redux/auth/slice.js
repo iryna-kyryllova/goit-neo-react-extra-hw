@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { register, login, logout } from './operations'
+import { register, login, logout, refreshUser } from './operations'
 
 const initialState = {
   user: {
@@ -32,6 +32,14 @@ export const authSlice = createSlice({
         state.user = { name: null, email: null }
         state.token = null
         state.isLoggedIn = false
+      })
+      .addCase(refreshUser.pending, (state) => {
+        state.isRefreshing = true
+      })
+      .addCase(refreshUser.fulfilled, (state, { payload }) => {
+        state.user = payload
+        state.isLoggedIn = true
+        state.isRefreshing = false
       })
       .addMatcher(
         (action) => action.type.endsWith('/pending'),

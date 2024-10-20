@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { logout } from '../auth/operations'
 import { fetchContacts, addContact, deleteContact } from './operations'
 
 const initialState = {
@@ -20,6 +21,9 @@ export const contactsSlice = createSlice({
       })
       .addCase(deleteContact.fulfilled, (state, { payload }) => {
         state.items = state.items.filter((item) => item.id !== payload.id)
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.items = []
       })
       .addMatcher(
         (action) => action.type.endsWith('/pending'),

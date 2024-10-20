@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { registerApi } from 'api/api'
+import { registerApi, loginApi, logoutApi } from 'api/api'
 
 export const register = createAsyncThunk('auth/register', async (data, thunkAPI) => {
   try {
@@ -12,9 +12,8 @@ export const register = createAsyncThunk('auth/register', async (data, thunkAPI)
 
 export const login = createAsyncThunk('auth/login', async (data, thunkAPI) => {
   try {
-    console.log('Login data:', data)
-    // const response = await fetchContactsApi()
-    // return response
+    const response = await loginApi(data)
+    return response
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message)
   }
@@ -22,9 +21,7 @@ export const login = createAsyncThunk('auth/login', async (data, thunkAPI) => {
 
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    console.log('Logout')
-    // const response = await fetchContactsApi()
-    // return response
+    return await logoutApi()
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message)
   }

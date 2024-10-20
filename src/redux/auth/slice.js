@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { register } from './operations'
+import { register, login, logout } from './operations'
 
 const initialState = {
   user: {
@@ -19,16 +19,20 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(register.fulfilled, (state, { payload }) => {
-        state.items = payload.user
+        state.user = payload.user
         state.token = payload.token
         state.isLoggedIn = true
       })
-      // .addCase(addContact.fulfilled, (state, { payload }) => {
-      //   state.items.push(payload)
-      // })
-      // .addCase(deleteContact.fulfilled, (state, { payload }) => {
-      //   state.items = state.items.filter((item) => item.id !== payload.id)
-      // })
+      .addCase(login.fulfilled, (state, { payload }) => {
+        state.user = payload.user
+        state.token = payload.token
+        state.isLoggedIn = true
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.user = { name: null, email: null }
+        state.token = null
+        state.isLoggedIn = false
+      })
       .addMatcher(
         (action) => action.type.endsWith('/pending'),
         (state) => {

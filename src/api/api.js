@@ -4,11 +4,31 @@ const instance = axios.create({
   baseURL: 'https://connections-api.goit.global'
 })
 
+const setToken = (token) => {
+  instance.defaults.headers.common.Authorization = `Bearer ${token}`
+}
+
+const removeToken = () => {
+  delete instance.defaults.headers.common.Authorization
+}
+
 // Auth
 
 export const registerApi = async (newUser) => {
   const { data } = await instance.post('/users/signup', newUser)
+  setToken(data.token)
   return data
+}
+
+export const loginApi = async (user) => {
+  const { data } = await instance.post('/users/login', user)
+  setToken(data.token)
+  return data
+}
+
+export const logoutApi = async () => {
+  await instance.post('/users/logout')
+  return removeToken()
 }
 
 // Contacts

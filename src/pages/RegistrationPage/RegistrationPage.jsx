@@ -9,7 +9,7 @@ const RegistrationPage = () => {
   const handleRegistration = (data) => {
     dispatch(register(data))
       .unwrap()
-      .then((res) => toast.success(`Account ${res.name} successfully created!`))
+      .then((res) => toast.success(`Account for ${res.user.namee} was successfully created!`))
   }
 
   return (
